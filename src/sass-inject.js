@@ -84,7 +84,8 @@ const compile = scss => {
 };
 
 export default load => {
-  const urlBase = path.dirname(url.parse(load.address).pathname) + '/';
+  const parsedUrl = url.parse(load.address);
+  const urlBase = path.dirname(parsedUrl.protocol + "//" + parsedUrl.host + parsedUrl.pathname) + '/';
   const indentedSyntax = load.address.endsWith('.sass');
   // load initial scss file
   return reqwest(load.address)
